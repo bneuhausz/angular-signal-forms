@@ -18,10 +18,9 @@ import { MatInputModule } from "@angular/material/input";
         <input matInput [control]="f.confirm" />
       </mat-form-field>
 
-      @if (f().errors()[0]?.kind === 'passwordMissmatch') {
+      @if (f().errors()[0]?.kind === 'passwordMismatch') {
         <mat-error>{{ f().errors()[0]?.message }}</mat-error>
       }
-      
     </form>
   `,
   styles: `
@@ -46,7 +45,7 @@ export default class SimpleForm {
     required(p.confirm, { message: 'Please confirm your password' });
     validate(p, ({ value }) => {
       if (value().password !== value().confirm) {
-        return customError({ kind: 'passwordMissmatch', message: 'The password and the password confirmation do not match' });
+        return customError({ kind: 'passwordMismatch', message: 'The password and the password confirmation do not match' });
       }
       return [];
     });
