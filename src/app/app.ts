@@ -1,16 +1,31 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, RouterLink, MatToolbarModule, MatButtonModule, RouterLinkActive],
   template: `
-    <h1>Welcome to {{ title() }}!</h1>
+    <mat-toolbar>
+      <a matButton [routerLink]="['/simple-form']" routerLinkActive="active">Simple</a>
+      <a matButton [routerLink]="['/validated-form']" routerLinkActive="active">Validated</a>
+      <a matButton [routerLink]="['/conditional-form']" routerLinkActive="active">Conditionally validated</a>
+      <a matButton [routerLink]="['/form-with-value']" routerLinkActive="active">With value</a>
+      <a matButton [routerLink]="['/cross-validated-form']" routerLinkActive="active">Cross-validated</a>
+      <a matButton [routerLink]="['/async-form']" routerLinkActive="active">Async</a>
+      <a matButton [routerLink]="['/disabled-form']" routerLinkActive="active">Disabled</a>
+      <a matButton [routerLink]="['/schema-form']" routerLinkActive="active">Schema</a>
+    </mat-toolbar>
 
     <router-outlet />
   `,
-  styles: [],
+  styles: [`
+    @use '@angular/material' as mat;
+    
+    .active {
+      font-weight: bold;
+    }
+  `],
 })
-export class App {
-  protected readonly title = signal('angular-signal-forms');
-}
+export class App { }
