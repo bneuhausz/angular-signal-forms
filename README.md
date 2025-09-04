@@ -1,5 +1,7 @@
 # AngularSignalForms
 
+[This is the example project for my artice about the experimental Angular signal forms.](https://bneuhausz.dev/blog/angular-signal-forms-are-out)
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0-next.2.
 
 ## Development server
