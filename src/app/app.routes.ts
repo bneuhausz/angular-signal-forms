@@ -34,6 +34,10 @@ export const routes: Routes = [
     loadComponent: () => import('./schema-form'),
   },
   {
+    path: 'submit-form',
+    loadComponent: () => import('./submit-form'),
+  },
+  {
     path: '**',
     redirectTo: 'simple-form',
   }

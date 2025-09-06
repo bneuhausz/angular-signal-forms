@@ -16,6 +16,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
       <a matButton [routerLink]="['/async-form']" routerLinkActive="active">Async</a>
       <a matButton [routerLink]="['/disabled-form']" routerLinkActive="active">Disabled</a>
       <a matButton [routerLink]="['/schema-form']" routerLinkActive="active">Schema</a>
+      <a matButton [routerLink]="['/submit-form']" routerLinkActive="active">Submit</a>
     </mat-toolbar>
 
     <router-outlet />
