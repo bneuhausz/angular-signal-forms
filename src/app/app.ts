@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, MatToolbarModule, MatButtonModule, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, MatToolbarModule, MatButtonModule, MatMenuModule, RouterLinkActive],
   template: `
     <mat-toolbar>
       <a matButton [routerLink]="['/simple-form']" routerLinkActive="active">Simple</a>
@@ -17,6 +18,13 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
       <a matButton [routerLink]="['/disabled-form']" routerLinkActive="active">Disabled</a>
       <a matButton [routerLink]="['/schema-form']" routerLinkActive="active">Schema</a>
       <a matButton [routerLink]="['/submit-form']" routerLinkActive="active">Submit</a>
+      <button matButton [matMenuTriggerFor]="menu">Advanced</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/advanced/custom-control-form']">Custom Control</button>
+        <button mat-menu-item [routerLink]="['/advanced/multiple-schemas']">Multiple Schemas</button>
+        <button mat-menu-item [routerLink]="['/advanced/conditional-schema']">Conditional Schema</button>
+        <button mat-menu-item [routerLink]="['/advanced/form-with-array']">Form With Array</button>
+      </mat-menu>
     </mat-toolbar>
 
     <router-outlet />

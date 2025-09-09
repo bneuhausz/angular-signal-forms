@@ -38,6 +38,27 @@ export const routes: Routes = [
     loadComponent: () => import('./submit-form'),
   },
   {
+    path: 'advanced',
+    children: [
+      {
+        path: 'custom-control-form',
+        loadComponent: () => import('./advanced/custom-control-form'),
+      },
+      {
+        path: 'multiple-schemas',
+        loadComponent: () => import('./advanced/multiple-schemas'),
+      },
+      {
+        path: 'conditional-schema',
+        loadComponent: () => import('./advanced/conditional-schema'),
+      },
+      {
+        path: 'form-with-array',
+        loadComponent: () => import('./advanced/form-with-array'),
+      },
+    ]
+  },
+  {
     path: '**',
     redirectTo: 'simple-form',
   }
