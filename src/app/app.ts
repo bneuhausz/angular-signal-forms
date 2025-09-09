@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, MatToolbarModule, MatButtonModule, MatMenuModule, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule, RouterLinkActive],
   template: `
     <mat-toolbar>
+      <a matIconButton [routerLink]="['/']">
+        <mat-icon>home</mat-icon>
+      </a>
       <a matButton [routerLink]="['/simple-form']" routerLinkActive="active">Simple</a>
       <a matButton [routerLink]="['/validated-form']" routerLinkActive="active">Validated</a>
       <a matButton [routerLink]="['/conditional-form']" routerLinkActive="active">Conditionally validated</a>

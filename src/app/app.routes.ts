@@ -2,6 +2,10 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
+    path: '',
+    loadComponent: () => import('./home'),
+  },
+  {
     path: 'simple-form',
     loadComponent: () => import('./simple-form'),
   },
@@ -60,6 +64,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'simple-form',
+    redirectTo: '',
   }
 ];
