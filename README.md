@@ -1,7 +1,9 @@
 # AngularSignalForms
 
 [This is the example project for my artice about the experimental Angular signal forms.](https://bneuhausz.dev/blog/angular-signal-forms-are-out)
+
 [Another article based on this repo, about the new submit function and applying server errors to the affected input.](https://bneuhausz.dev/blog/angular-signal-forms-applying-server-errors)
+
 [Third article based on this repo, about more advanced usages.](https://bneuhausz.dev/blog/angular-signal-forms-advanced)
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.0-next.2.
