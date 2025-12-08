@@ -1,5 +1,7 @@
 # AngularSignalForms
 
+** This repo has been upgraded to the released version of Angular 21 **
+
 [This is the example project for my artice about the experimental Angular signal forms.](https://bneuhausz.dev/blog/angular-signal-forms-are-out)
 
 [Another article based on this repo, about the new submit function and applying server errors to the affected input.](https://bneuhausz.dev/blog/angular-signal-forms-applying-server-errors)
