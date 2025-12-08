@@ -45,7 +45,6 @@ export default class ValidatedForm {
     submit(this.f, (f) => this.mockHttpRequest(f));
   }
 
-  //TODO: Field to FieldTree
   mockHttpRequest(form: FieldTree<{ name: string }>) {
     return Promise.resolve(
       form().value().name === 'Bálint'

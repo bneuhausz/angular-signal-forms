@@ -43,7 +43,6 @@ import { MatInputModule } from "@angular/material/input";
   `
 })
 export default class AsyncForm {
-  //TODO: onSuccess and onError instead of errors
   f = form(signal({
     firstName: '',
     lastName: ''
