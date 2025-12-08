@@ -1,16 +1,16 @@
 import { Component, signal } from "@angular/core";
-import { form, Control } from "@angular/forms/signals";
+import { form, Field } from "@angular/forms/signals";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
 @Component({
   selector: 'app-form-with-value',
-  imports: [MatFormFieldModule, MatInputModule, Control],
+  imports: [MatFormFieldModule, MatInputModule, Field],
   template: `
     <form>
       <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input matInput [control]="f.name" />
+        <input matInput [field]="f.name" />
       </mat-form-field>
     </form>
   `,

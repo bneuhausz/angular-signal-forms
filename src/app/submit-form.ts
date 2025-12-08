@@ -1,17 +1,17 @@
 import { Component, signal } from "@angular/core";
-import { form, Control, required, submit, Field } from "@angular/forms/signals";
+import { form, required, submit, Field, FieldTree } from "@angular/forms/signals";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
 @Component({
   selector: 'app-submit-form',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, Control],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, Field],
   template: `
     <form>
       <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput [control]="f.name" />
+        <input matInput [field]="f.name" />
         @if (f.name().invalid()) {
           <mat-error>{{ f.name().errors()[0].kind }}: {{ f.name().errors()[0].message }}</mat-error>
         }
@@ -45,7 +45,8 @@ export default class ValidatedForm {
     submit(this.f, (f) => this.mockHttpRequest(f));
   }
 
-  mockHttpRequest(form: Field<{ name: string }>) {
+  //TODO: Field to FieldTree
+  mockHttpRequest(form: FieldTree<{ name: string }>) {
     return Promise.resolve(
       form().value().name === 'Bálint'
         ? undefined

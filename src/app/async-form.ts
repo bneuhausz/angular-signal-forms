@@ -1,17 +1,17 @@
 import { Component, resource, signal } from "@angular/core";
-import { form, Control, validateHttp, customError, validateAsync } from "@angular/forms/signals";
+import { form, Field, validateHttp, customError, validateAsync } from "@angular/forms/signals";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
 @Component({
   selector: 'app-async-form',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, Control],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, Field],
   template: `
     <form>
       <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input matInput [control]="f.firstName" />
+        <input matInput [field]="f.firstName" />
         @if (f.firstName().invalid()) {
           <mat-error>{{ f.firstName().errors()[0].message }}</mat-error>
         }
@@ -19,7 +19,7 @@ import { MatInputModule } from "@angular/material/input";
 
       <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input matInput [control]="f.lastName" />
+        <input matInput [field]="f.lastName" />
         @if (f.lastName().invalid()) {
           <mat-error>{{ f.lastName().errors()[0].message }}</mat-error>
         }
@@ -43,13 +43,22 @@ import { MatInputModule } from "@angular/material/input";
   `
 })
 export default class AsyncForm {
+  //TODO: onSuccess and onError instead of errors
   f = form(signal({
     firstName: '',
     lastName: ''
   }), p => {
     validateHttp(p.firstName, {
       request: ({ value }) => { return value() ? `http://localhost:3000/api/validate/first-name/${value()}` : undefined },
-      errors: (res: any) => !res.valid ? customError({ kind: 'notUnique', message: 'First name is not unique' }) : []
+      onSuccess(res: any) {
+        if (!res.valid) {
+          return [customError({ kind: 'notUnique', message: 'First name is not unique' })];
+        }
+        return null;
+      },
+      onError(error: unknown) {
+        console.error('Async validation error:', error);
+      },
     });
     validateAsync(p.lastName, {
       params: ({ value }) => value(),
@@ -63,7 +72,15 @@ export default class AsyncForm {
           return res.json();
         }
       }),
-      errors: (res: any) => !res.valid ? customError({ kind: 'notUnique', message: 'Last name is not unique' }) : []
+      onSuccess(res: any) {
+        if (!res.valid) {
+          return [customError({ kind: 'notUnique', message: 'Last name is not unique' })];
+        }
+        return null;
+      },
+      onError(error: unknown) {
+        console.error('Async validation error:', error);
+      },
     });
   });
 }

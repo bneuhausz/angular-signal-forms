@@ -1,6 +1,6 @@
 import { JsonPipe } from "@angular/common";
 import { Component, signal } from "@angular/core";
-import { form, Control, schema, required, apply } from "@angular/forms/signals";
+import { form, Field, schema, required, apply } from "@angular/forms/signals";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -33,12 +33,12 @@ const addressSchema = schema<AddressSchema>((p) => {
 
 @Component({
   selector: 'app-mutiple-schemas',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, JsonPipe, Control],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, JsonPipe, Field],
   template: `
     <form>
       <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input matInput [control]="f.name.firstName" />
+        <input matInput [field]="f.name.firstName" />
         @if (f.name.firstName().invalid()) {
           <mat-error>{{ f.name.firstName().errors()[0].message }}</mat-error>
         }
@@ -46,7 +46,7 @@ const addressSchema = schema<AddressSchema>((p) => {
 
       <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input matInput [control]="f.name.lastName" />
+        <input matInput [field]="f.name.lastName" />
         @if (f.name.lastName().invalid()) {
           <mat-error>{{ f.name.lastName().errors()[0].message }}</mat-error>
         }
@@ -56,7 +56,7 @@ const addressSchema = schema<AddressSchema>((p) => {
 
       <mat-form-field>
         <mat-label>Street</mat-label>
-        <input matInput [control]="f.address.street" />
+        <input matInput [field]="f.address.street" />
         @if (f.address.street().invalid()) {
           <mat-error>{{ f.address.street().errors()[0].message }}</mat-error>
         }
@@ -64,7 +64,7 @@ const addressSchema = schema<AddressSchema>((p) => {
 
       <mat-form-field>
         <mat-label>City</mat-label>
-        <input matInput [control]="f.address.city" />
+        <input matInput [field]="f.address.city" />
         @if (f.address.city().invalid()) {
           <mat-error>{{ f.address.city().errors()[0].message }}</mat-error>
         }

@@ -1,5 +1,5 @@
 import { Component, signal } from "@angular/core";
-import { form, Control, schema, required } from "@angular/forms/signals";
+import { form, Field, schema, required } from "@angular/forms/signals";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -16,12 +16,12 @@ const nameSchema = schema<NameData>((p) => {
 
 @Component({
   selector: 'app-schema-form',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, Control],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, Field],
   template: `
     <form>
       <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input matInput [control]="f.firstName" />
+        <input matInput [field]="f.firstName" />
         @if (f.firstName().invalid()) {
           <mat-error>{{ f.firstName().errors()[0].message }}</mat-error>
         }
@@ -29,7 +29,7 @@ const nameSchema = schema<NameData>((p) => {
 
       <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input matInput [control]="f.lastName" />
+        <input matInput [field]="f.lastName" />
         @if (f.lastName().invalid()) {
           <mat-error>{{ f.lastName().errors()[0].message }}</mat-error>
         }

@@ -1,6 +1,6 @@
 import { JsonPipe } from "@angular/common";
 import { Component, signal } from "@angular/core";
-import { form, Control, schema, required, apply, applyEach } from "@angular/forms/signals";
+import { form, Field, schema, required, apply, applyEach } from "@angular/forms/signals";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatDividerModule } from "@angular/material/divider";
@@ -34,12 +34,12 @@ const addressSchema = schema<AddressSchema>((p) => {
 
 @Component({
   selector: 'app-form-with-array',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatCheckboxModule, JsonPipe, Control],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatDividerModule, MatCheckboxModule, JsonPipe, Field],
   template: `
     <form>
       <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input matInput [control]="f.name.firstName" />
+        <input matInput [field]="f.name.firstName" />
         @if (f.name.firstName().invalid()) {
           <mat-error>{{ f.name.firstName().errors()[0].message }}</mat-error>
         }
@@ -47,7 +47,7 @@ const addressSchema = schema<AddressSchema>((p) => {
 
       <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input matInput [control]="f.name.lastName" />
+        <input matInput [field]="f.name.lastName" />
         @if (f.name.lastName().invalid()) {
           <mat-error>{{ f.name.lastName().errors()[0].message }}</mat-error>
         }
@@ -58,7 +58,7 @@ const addressSchema = schema<AddressSchema>((p) => {
       @for (address of f.addresses; track $index) {
         <mat-form-field>
           <mat-label>Street</mat-label>
-          <input matInput [control]="address.street" />
+          <input matInput [field]="address.street" />
           @if (address.street().invalid()) {
             <mat-error>{{ address.street().errors()[0].message }}</mat-error>
           }
@@ -66,7 +66,7 @@ const addressSchema = schema<AddressSchema>((p) => {
 
         <mat-form-field>
           <mat-label>City</mat-label>
-          <input matInput [control]="address.city" />
+          <input matInput [field]="address.city" />
           @if (address.city().invalid()) {
             <mat-error>{{ address.city().errors()[0].message }}</mat-error>
           }
