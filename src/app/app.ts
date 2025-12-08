@@ -22,6 +22,7 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
       <a matButton [routerLink]="['/disabled-form']" routerLinkActive="active">Disabled</a>
       <a matButton [routerLink]="['/schema-form']" routerLinkActive="active">Schema</a>
       <a matButton [routerLink]="['/submit-form']" routerLinkActive="active">Submit</a>
+      <a matButton [routerLink]="['/debounced-form']" routerLinkActive="active">Debounced</a>
       <button matButton [matMenuTriggerFor]="menu">Advanced</button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item [routerLink]="['/advanced/custom-control-form']">Custom Control</button>

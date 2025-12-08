@@ -42,6 +42,10 @@ export const routes: Routes = [
     loadComponent: () => import('./submit-form'),
   },
   {
+    path: 'debounced-form',
+    loadComponent: () => import('./debounced-form'),
+  },
+  {
     path: 'advanced',
     children: [
       {
