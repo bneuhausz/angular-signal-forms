@@ -50,7 +50,7 @@ export default class ValidatedForm {
       form().value().name === 'Bálint'
         ? undefined
         : [{
-          field: form.name,
+          fieldTree: form.name,
           kind: 'server',
           message: 'Name is not valid'
         }]
