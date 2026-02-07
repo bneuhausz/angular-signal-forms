@@ -1,6 +1,6 @@
 # AngularSignalForms
 
-**This repo has been upgraded to the released version of Angular 21**
+**This repo has been upgraded to Angular 21.2.0-next.2**
 
 [This is the example project for my artice about the experimental Angular signal forms.](https://bneuhausz.dev/blog/angular-signal-forms-are-out)
 
