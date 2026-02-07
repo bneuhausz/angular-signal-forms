@@ -1,17 +1,17 @@
 import { Component, signal } from "@angular/core";
-import { form, required, submit, Field, FieldTree } from "@angular/forms/signals";
+import { form, required, submit, FormField, FieldTree } from "@angular/forms/signals";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
 @Component({
   selector: 'app-submit-form',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, Field],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, FormField],
   template: `
     <form>
       <mat-form-field>
         <mat-label>Name</mat-label>
-        <input matInput [field]="f.name" />
+        <input matInput [formField]="f.name" />
         @if (f.name().invalid()) {
           <mat-error>{{ f.name().errors()[0].kind }}: {{ f.name().errors()[0].message }}</mat-error>
         }

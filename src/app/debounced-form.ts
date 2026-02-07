@@ -1,22 +1,22 @@
 import { JsonPipe } from "@angular/common";
 import { Component, signal } from "@angular/core";
-import { form, Field, debounce } from "@angular/forms/signals";
+import { form, FormField, debounce } from "@angular/forms/signals";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
 @Component({
   selector: 'app-debounced-form',
-  imports: [MatFormFieldModule, MatInputModule, Field, JsonPipe],
+  imports: [MatFormFieldModule, MatInputModule, FormField, JsonPipe],
   template: `
     <form>
       <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input matInput [field]="f.firstName" />
+        <input matInput [formField]="f.firstName" />
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input matInput [field]="f.lastName" />
+        <input matInput [formField]="f.lastName" />
       </mat-form-field>
     </form>
 

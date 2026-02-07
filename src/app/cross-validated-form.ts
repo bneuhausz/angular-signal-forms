@@ -1,21 +1,21 @@
 import { Component, signal } from "@angular/core";
-import { form, Field, required, validate, customError } from "@angular/forms/signals";
+import { form, FormField, required, validate } from "@angular/forms/signals";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
 @Component({
   selector: 'app-cross-validated-form',
-  imports: [MatFormFieldModule, MatInputModule, Field],
+  imports: [MatFormFieldModule, MatInputModule, FormField],
   template: `
     <form>
       <mat-form-field>
         <mat-label>Password</mat-label>
-        <input matInput [field]="f.password" />
+        <input matInput [formField]="f.password" />
       </mat-form-field>
 
       <mat-form-field>
         <mat-label>Confirm Password</mat-label>
-        <input matInput [field]="f.confirm" />
+        <input matInput [formField]="f.confirm" />
       </mat-form-field>
 
       @if (f().errors()[0]?.kind === 'passwordMismatch') {
@@ -33,6 +33,7 @@ import { MatInputModule } from "@angular/material/input";
     form {
       display: flex;
       flex-direction: column;
+      max-width: 210px;
     }
   `
 })
@@ -45,7 +46,7 @@ export default class SimpleForm {
     required(p.confirm, { message: 'Please confirm your password' });
     validate(p, ({ value }) => {
       if (value().password !== value().confirm) {
-        return customError({ kind: 'passwordMismatch', message: 'The password and the password confirmation do not match' });
+        return { kind: 'passwordMismatch', message: 'The password and the password confirmation do not match' };
       }
       return [];
     });

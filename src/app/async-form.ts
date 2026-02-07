@@ -1,17 +1,17 @@
 import { Component, resource, signal } from "@angular/core";
-import { form, Field, validateHttp, customError, validateAsync } from "@angular/forms/signals";
+import { form, FormField, validateHttp, validateAsync } from "@angular/forms/signals";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 
 @Component({
   selector: 'app-async-form',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, Field],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, FormField],
   template: `
     <form>
       <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input matInput [field]="f.firstName" />
+        <input matInput [formField]="f.firstName" />
         @if (f.firstName().invalid()) {
           <mat-error>{{ f.firstName().errors()[0].message }}</mat-error>
         }
@@ -19,7 +19,7 @@ import { MatInputModule } from "@angular/material/input";
 
       <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input matInput [field]="f.lastName" />
+        <input matInput [formField]="f.lastName" />
         @if (f.lastName().invalid()) {
           <mat-error>{{ f.lastName().errors()[0].message }}</mat-error>
         }
@@ -51,7 +51,7 @@ export default class AsyncForm {
       request: ({ value }) => { return value() ? `http://localhost:3000/api/validate/first-name/${value()}` : undefined },
       onSuccess(res: any) {
         if (!res.valid) {
-          return [customError({ kind: 'notUnique', message: 'First name is not unique' })];
+          return [{ kind: 'notUnique', message: 'First name is not unique' }];
         }
         return null;
       },
@@ -73,7 +73,7 @@ export default class AsyncForm {
       }),
       onSuccess(res: any) {
         if (!res.valid) {
-          return [customError({ kind: 'notUnique', message: 'Last name is not unique' })];
+          return [{ kind: 'notUnique', message: 'Last name is not unique' }];
         }
         return null;
       },

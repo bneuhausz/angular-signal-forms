@@ -1,5 +1,5 @@
 import { Component, signal } from "@angular/core";
-import { form, Field } from "@angular/forms/signals";
+import { form, FormField } from "@angular/forms/signals";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { CustomControl } from "./custom-control/custom-control";
@@ -7,10 +7,10 @@ import { JsonPipe } from "@angular/common";
 
 @Component({
   selector: 'app-custom-control-form',
-  imports: [MatFormFieldModule, MatInputModule, Field, CustomControl, JsonPipe],
+  imports: [MatFormFieldModule, MatInputModule, FormField, CustomControl, JsonPipe],
   template: `
     <form>
-      <app-custom-control [field]="f.color"></app-custom-control>
+      <app-custom-control [formField]="f.color"></app-custom-control>
     </form>
 
     <span>Form value: {{ f().value() | json }}</span>

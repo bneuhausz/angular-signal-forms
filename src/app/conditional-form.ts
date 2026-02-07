@@ -1,5 +1,5 @@
 import { Component, signal } from "@angular/core";
-import { form, Field, required, email } from "@angular/forms/signals";
+import { form, FormField, required, email } from "@angular/forms/signals";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -7,12 +7,12 @@ import { MatInputModule } from "@angular/material/input";
 
 @Component({
   selector: 'app-conditional-form',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule, Field],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule, FormField],
   template: `
     <form>
       <mat-form-field>
         <mat-label>First Name</mat-label>
-        <input matInput [field]="f.firstName" />
+        <input matInput [formField]="f.firstName" />
         @if (f.firstName().invalid()) {
           <mat-error>{{ f.firstName().errors()[0].message }}</mat-error>
         }
@@ -20,7 +20,7 @@ import { MatInputModule } from "@angular/material/input";
 
       <mat-form-field>
         <mat-label>Last Name</mat-label>
-        <input matInput [field]="f.lastName" />
+        <input matInput [formField]="f.lastName" />
         @if (f.lastName().invalid()) {
           <mat-error>{{ f.lastName().errors()[0].message }}</mat-error>
         }
@@ -28,13 +28,13 @@ import { MatInputModule } from "@angular/material/input";
 
       <mat-form-field>
         <mat-label>Email</mat-label>
-        <input matInput [field]="f.email" />
+        <input matInput [formField]="f.email" />
         @if (f.email().invalid()) {
           <mat-error>{{ f.email().errors()[0].message }}</mat-error>
         }
       </mat-form-field>
 
-      <mat-checkbox [field]="f.canReceiveNewsletter">Send me newsletters!</mat-checkbox>
+      <mat-checkbox [formField]="f.canReceiveNewsletter">Send me newsletters!</mat-checkbox>
 
       <button mat-button type="button" [disabled]="f().invalid()">Submit</button>
     </form>
